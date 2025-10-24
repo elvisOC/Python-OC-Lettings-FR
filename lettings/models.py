@@ -7,17 +7,32 @@ class Address(models.Model):
     Modèle représentant une adresse physique.
 
     Attributs :
-        number (PositiveIntegerField) : Numéro de la rue, maximum 9999.
-        street (CharField) : Nom de la rue, longueur maximale 64 caractères.
-        city (CharField) : Nom de la ville, longueur maximale 64 caractères.
-        state (CharField) : Code de l'état, exactement 2 caractères.
-        zip_code (PositiveIntegerField) : Code postal, maximum 99999.
-        country_iso_code (CharField) : Code ISO du pays, exactement 3 caractères.
+        number (PositiveIntegerField) :
+            Numéro de la rue, maximum 9999.
 
-        verbose_name_plural : Corrige le pluriel de la class Address
+        street (CharField) :
+            Nom de la rue, longueur maximale 64 caractères.
+
+        city (CharField) :
+            Nom de la ville, longueur maximale 64 caractères.
+
+        state (CharField) :
+            Code de l'état, exactement 2 caractères.
+
+        zip_code (PositiveIntegerField) :
+            Code postal, maximum 99999.
+
+        country_iso_code (CharField) :
+            Code ISO du pays, exactement 3 caractères.
+
+        verbose_name_plural :
+            Corrige le pluriel de la classe Address.
+
     Méthodes :
-        __str__() : Retourne une représentation textuelle de l'adresse (numéro + rue).
+        __str__() :
+            Retourne une représentation textuelle de l'adresse (numéro + rue).
     """
+
     number = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
     street = models.CharField(max_length=64)
     city = models.CharField(max_length=64)

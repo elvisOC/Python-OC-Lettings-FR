@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oc_lettings_site.tests &mdash; Documentation OC Lettings Site 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=05dadb3a"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=e6b791cb"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Recherche" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            OC Lettings Site
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenu</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Python-OC-Lettings-FR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OC Lettings Site</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Code du module</a></li>
+      <li class="breadcrumb-item active">oc_lettings_site.tests</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Code source de oc_lettings_site.tests</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.http</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpRequest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.urls</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lettings.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Address</span><span class="p">,</span> <span class="n">Letting</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">profiles.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Profile</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># MODELS TESTS</span>
+<span class="c1"># =========================</span>
+
+
+<div class="viewcode-block" id="test_address_str">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_address_str">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_address_str</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">Address</span><span class="p">(</span>
+        <span class="n">number</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>
+        <span class="n">street</span><span class="o">=</span><span class="s2">&quot;Main Street&quot;</span><span class="p">,</span>
+        <span class="n">city</span><span class="o">=</span><span class="s2">&quot;City&quot;</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;ST&quot;</span><span class="p">,</span>
+        <span class="n">zip_code</span><span class="o">=</span><span class="mi">12345</span><span class="p">,</span>
+        <span class="n">country_iso_code</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span>
+    <span class="p">)</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="s2">&quot;__str__&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Address: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">street</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;123 Main Street&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="test_letting_str_and_relation">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_letting_str_and_relation">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_letting_str_and_relation</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">Address</span><span class="p">(</span>
+        <span class="n">number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">street</span><span class="o">=</span><span class="s2">&quot;Elm Street&quot;</span><span class="p">,</span>
+        <span class="n">city</span><span class="o">=</span><span class="s2">&quot;City&quot;</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;ST&quot;</span><span class="p">,</span>
+        <span class="n">zip_code</span><span class="o">=</span><span class="mi">12345</span><span class="p">,</span>
+        <span class="n">country_iso_code</span><span class="o">=</span><span class="s2">&quot;USA&quot;</span><span class="p">)</span>
+    <span class="n">letting</span> <span class="o">=</span> <span class="n">Letting</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Beautiful House&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">)</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">letting</span><span class="p">,</span> <span class="s2">&quot;__str__&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Letting: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">letting</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Beautiful House&quot;</span>
+    <span class="k">assert</span> <span class="n">letting</span><span class="o">.</span><span class="n">address</span> <span class="o">==</span> <span class="n">address</span></div>
+
+
+
+<div class="viewcode-block" id="test_profile_str_and_favorite_city">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_profile_str_and_favorite_city">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_profile_str_and_favorite_city</span><span class="p">():</span>
+    <span class="c1"># Crée un mock pour l&#39;utilisateur</span>
+    <span class="n">fake_user</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">fake_user</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;john_doe&quot;</span>
+
+    <span class="c1"># Crée un mock pour le Profile</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">profile</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">fake_user</span>
+    <span class="n">profile</span><span class="o">.</span><span class="n">favorite_city</span> <span class="o">=</span> <span class="s2">&quot;Paris&quot;</span>
+
+    <span class="c1"># On mock la méthode __str__ pour reproduire le comportement attendu</span>
+    <span class="n">profile</span><span class="o">.</span><span class="fm">__str__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="o">=</span><span class="n">profile</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">favorite_city</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Test</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;john_doe - Paris&quot;</span></div>
+
+
+
+<span class="c1"># =========================</span>
+<span class="c1"># VIEWS TESTS</span>
+<span class="c1"># =========================</span>
+
+<div class="viewcode-block" id="test_lettings_index_view">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_lettings_index_view">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_lettings_index_view</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">lettings.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">index</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">HttpRequest</span><span class="p">()</span>
+    <span class="n">fake_lettings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;letting1&quot;</span><span class="p">,</span> <span class="s2">&quot;letting2&quot;</span><span class="p">]</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">Letting</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">fake_lettings</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_render</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span> <span class="k">return</span> <span class="n">context</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="s2">&quot;lettings.views.render&quot;</span><span class="p">,</span> <span class="n">fake_render</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;lettings_list&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">fake_lettings</span></div>
+
+
+
+<div class="viewcode-block" id="test_letting_detail_view">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_letting_detail_view">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_letting_detail_view</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">lettings.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">letting</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">HttpRequest</span><span class="p">()</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">FakeAddress</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">FakeLetting</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Fake Letting&quot;</span>
+        <span class="n">address</span> <span class="o">=</span> <span class="n">FakeAddress</span><span class="p">()</span>
+
+    <span class="n">fake_letting</span> <span class="o">=</span> <span class="n">FakeLetting</span><span class="p">()</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">Letting</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="nb">id</span><span class="p">:</span> <span class="n">fake_letting</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_render</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span> <span class="k">return</span> <span class="n">context</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="s2">&quot;lettings.views.render&quot;</span><span class="p">,</span> <span class="n">fake_render</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">letting</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">letting_id</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Fake Letting&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="test_profiles_index_view">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_profiles_index_view">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_profiles_index_view</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">profiles.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">index</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">HttpRequest</span><span class="p">()</span>
+    <span class="n">fake_profiles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;profile1&quot;</span><span class="p">,</span> <span class="s2">&quot;profile2&quot;</span><span class="p">]</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">fake_profiles</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_render</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span> <span class="k">return</span> <span class="n">context</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="s2">&quot;profiles.views.render&quot;</span><span class="p">,</span> <span class="n">fake_render</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">index</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;profiles_list&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">fake_profiles</span></div>
+
+
+
+<div class="viewcode-block" id="test_profile_detail_view">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_profile_detail_view">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_profile_detail_view</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">profiles.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">profile</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">HttpRequest</span><span class="p">()</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">FakeUser</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;alice&quot;</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">FakeProfile</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">FakeUser</span><span class="p">()</span>
+
+    <span class="n">fake_profile</span> <span class="o">=</span> <span class="n">FakeProfile</span><span class="p">()</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">user__username</span><span class="p">:</span> <span class="n">fake_profile</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_render</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span> <span class="k">return</span> <span class="n">context</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="s2">&quot;profiles.views.render&quot;</span><span class="p">,</span> <span class="n">fake_render</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;alice&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;profile&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">==</span> <span class="s2">&quot;alice&quot;</span></div>
+
+
+
+<span class="c1"># =========================</span>
+<span class="c1"># URLS TESTS</span>
+<span class="c1"># =========================</span>
+
+<div class="viewcode-block" id="test_urls">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.tests.test_urls">[docs]</a>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_urls</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">oc_lettings_site.urls</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">urls</span>
+    <span class="n">fake_called</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="n">fake_called</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="s2">&quot;index_response&quot;</span>
+        <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">fake_index</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_lettings_index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="n">fake_called</span><span class="p">[</span><span class="s2">&quot;lettings_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="s2">&quot;lettings_index_response&quot;</span>
+        <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">lettings</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">fake_lettings_index</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_letting</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">letting_id</span><span class="p">):</span>
+        <span class="n">fake_called</span><span class="p">[</span><span class="s2">&quot;letting_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">letting_id</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;letting_</span><span class="si">{</span><span class="n">letting_id</span><span class="si">}</span><span class="s2">_response&quot;</span>
+        <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">lettings</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s2">&quot;letting&quot;</span><span class="p">,</span> <span class="n">fake_letting</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_profiles_index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="n">fake_called</span><span class="p">[</span><span class="s2">&quot;profiles_index&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="s2">&quot;profiles_index_response&quot;</span>
+        <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">fake_profiles_index</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fake_profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+        <span class="n">fake_called</span><span class="p">[</span><span class="s2">&quot;profile_username&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;profile_</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">_response&quot;</span>
+        <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">urls</span><span class="o">.</span><span class="n">profiles</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="n">fake_profile</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">&quot;/lettings/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">&quot;/lettings/42/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">&quot;/profiles/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">assert</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">&quot;/profiles/alice/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, Elvis.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
