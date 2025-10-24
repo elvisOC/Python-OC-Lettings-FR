@@ -6,7 +6,6 @@ env/
 venv/
 .env
 .DS_Store
-*.sqlite3
 /media/
 staticfiles/
 node_modules/
