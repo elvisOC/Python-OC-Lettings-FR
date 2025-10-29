@@ -1,0 +1,12 @@
+.git
+__pycache__
+*.pyc
+*.pyo
+.env
+venv
+.env.*
+node_modules
+.gitignore
+p13
+.flake8
+rapportflake.txt

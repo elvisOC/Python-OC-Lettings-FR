@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.env
+.DS_Store
+/media/
+staticfiles/
+node_modules/
+*.log
+p13
+.flake8
+rapportflake.txt
+staticfiles_collected
