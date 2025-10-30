@@ -2,9 +2,12 @@ name: CI / Build / Deploy
 
 on:
   push:
-    branches: ['**']
+    branches:
+      - dev
+      - master
   pull_request:
-    branches: ['**']
+    branches:
+      - dev
 
 permissions:
   contents: read
@@ -18,6 +21,7 @@ jobs:
   test:
     name: Lint, Tests & Coverage
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev' 
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DEBUG: 'True'
@@ -50,8 +54,7 @@ jobs:
   containerize:
     name: Build and push Docker image
     runs-on: ubuntu-latest
-    needs: test
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'  
     steps:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
@@ -81,7 +84,7 @@ jobs:
     name: Notify Sentry Release
     runs-on: ubuntu-latest
     needs: containerize
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'  
     steps:
       - uses: actions/checkout@v4
         with:
@@ -97,7 +100,7 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         run: |
           npx sentry-cli releases new ${{ github.sha }}
-          npx sentry-cli releases set-commits ${{ github.sha }} --auto
+          npx sentry-cli releases set-commits ${{ github.sha }} --auto --ignore-missing
           npx sentry-cli releases finalize ${{ github.sha }}
           npx sentry-cli releases deploys ${{ github.sha }} new -e production
 
@@ -105,7 +108,7 @@ jobs:
     name: Deploy to Render
     runs-on: ubuntu-latest
     needs: containerize
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'  
     steps:
       - name: Trigger Render Deploy
         env:
