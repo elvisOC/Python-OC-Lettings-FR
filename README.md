@@ -81,7 +81,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 ## Vue d’ensemble
 
 Le déploiement du projet **Python-OC-Lettings-FR** est automatisé avec **GitHub Actions** (CI) et **Render** (CD).  
-Chaque commit poussé sur la branche `main` déclenche, si tout passe :
+Chaque commit poussé sur la branche `master` déclenche, si tout passe :
 
 1. Lint / tests / couverture (CI)  
 2. Build et push de l'image Docker (si activé)  
@@ -100,15 +100,18 @@ Chaque commit poussé sur la branche `main` déclenche, si tout passe :
 - Sentry (supervision / release tracking)
 
 ### Arborescence utile
+
+```bash
 ├── .github/
-│ └── workflows/
-│ └── ci-cd.yml # Pipeline GitHub Actions
+│   └── workflows/
+│       └── ci-cd.yml          # Pipeline GitHub Actions
 ├── oc_lettings_site/
-│ └── settings.py # Config Django (env, Whitenoise, Sentry)
-├── entrypoint.sh # Script exécuté au démarrage (collectstatic, migrate, gunicorn)
+│   └── settings.py            # Config Django (env, Whitenoise, Sentry)
+├── entrypoint.sh              # Script exécuté au démarrage (collectstatic, migrate, gunicorn)
 ├── requirements.txt
 ├── README.md
 └── manage.py
+```
 
 ## Variables d’environnement nécessaires
 
