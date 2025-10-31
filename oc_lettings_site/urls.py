@@ -3,7 +3,7 @@ Configuration des URLs principales de l'application.
     Routes :
         '' : page d'accueil, handled par views.index
         'lettings/' : liste des locations, handled par lettings.views.index \n
-        'lettings/<int:letting_id>/' : détails d'une location, handled par lettings.views.letting \n
+        'lettings/<int:letting_id>/' : détails d'une location,handled par lettings.views.letting \n
         'profiles/' : liste des profils, handled par profiles.views.index \n
         'profiles/<str:username>/' : détails d'un profil, handled par profiles.views.profile \n
         'admin/' : interface d'administration Django
