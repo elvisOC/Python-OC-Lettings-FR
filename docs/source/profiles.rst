@@ -1,13 +1,6 @@
 profiles package
 ================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   profiles.migrations
 
 Submodules
 ----------

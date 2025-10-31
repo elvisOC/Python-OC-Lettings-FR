@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="oc_lettings_site.migrations package" href="oc_lettings_site.migrations.html" />
+    <link rel="next" title="profiles package" href="profiles.html" />
     <link rel="prev" title="manage module" href="manage.html" /> 
 </head>
 
@@ -49,10 +49,6 @@
 <li class="toctree-l2"><a class="reference internal" href="lettings.html">lettings package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manage.html">manage module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">oc_lettings_site package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="oc_lettings_site.migrations.html">oc_lettings_site.migrations package</a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-oc_lettings_site.admin">oc_lettings_site.admin module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-oc_lettings_site.apps">oc_lettings_site.apps module</a><ul>
@@ -76,6 +72,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-oc_lettings_site.urls">oc_lettings_site.urls module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-oc_lettings_site.views">oc_lettings_site.views module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#oc_lettings_site.views.index"><code class="docutils literal notranslate"><span class="pre">index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#oc_lettings_site.views.sentry_settings"><code class="docutils literal notranslate"><span class="pre">sentry_settings()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-oc_lettings_site.wsgi">oc_lettings_site.wsgi module</a></li>
@@ -114,35 +111,6 @@
              
   <section id="oc-lettings-site-package">
 <h1>oc_lettings_site package<a class="headerlink" href="#oc-lettings-site-package" title="Lien vers cette rubrique"></a></h1>
-<section id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Lien vers cette rubrique"></a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="oc_lettings_site.migrations.html">oc_lettings_site.migrations package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="oc_lettings_site.migrations.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oc_lettings_site.migrations.html#module-oc_lettings_site.migrations.0001_initial">oc_lettings_site.migrations.0001_initial module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="oc_lettings_site.migrations.html#oc_lettings_site.migrations.0001_initial.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="oc_lettings_site.migrations.html#oc_lettings_site.migrations.0001_initial.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="oc_lettings_site.migrations.html#oc_lettings_site.migrations.0001_initial.Migration.initial"><code class="docutils literal notranslate"><span class="pre">Migration.initial</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="oc_lettings_site.migrations.html#oc_lettings_site.migrations.0001_initial.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="oc_lettings_site.migrations.html#module-oc_lettings_site.migrations.0002_auto_20251016_1313">oc_lettings_site.migrations.0002_auto_20251016_1313 module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="oc_lettings_site.migrations.html#oc_lettings_site.migrations.0002_auto_20251016_1313.Migration"><code class="docutils literal notranslate"><span class="pre">Migration</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="oc_lettings_site.migrations.html#oc_lettings_site.migrations.0002_auto_20251016_1313.Migration.dependencies"><code class="docutils literal notranslate"><span class="pre">Migration.dependencies</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="oc_lettings_site.migrations.html#oc_lettings_site.migrations.0002_auto_20251016_1313.Migration.operations"><code class="docutils literal notranslate"><span class="pre">Migration.operations</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="oc_lettings_site.migrations.html#module-oc_lettings_site.migrations">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Lien vers cette rubrique"></a></h2>
 </section>
@@ -174,55 +142,132 @@
 </section>
 <section id="module-oc_lettings_site.tests">
 <span id="oc-lettings-site-tests-module"></span><h2>oc_lettings_site.tests module<a class="headerlink" href="#module-oc_lettings_site.tests" title="Lien vers cette rubrique"></a></h2>
+<p>Module de tests unitaires pour l’application Django OCLettingsSite.</p>
+<p>Ce module contient des tests pour :
+- Les modèles (<cite>Address</cite>, <cite>Letting</cite>, <cite>Profile</cite>)
+- Les vues (<cite>index</cite>, <cite>letting</cite>, <cite>profile</cite>, etc.)
+- Les URLs principales du projet</p>
+<p>Chaque test utilise Pytest et Django, et simule les appels aux fonctions ou
+méthodes avec des objets factices (mocks) pour isoler le comportement testé.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_address_str">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_address_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_address_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_address_str" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la méthode <code class="docutils literal notranslate"><span class="pre">__str__</span></code> du modèle <a class="reference internal" href="lettings.html#lettings.models.Address" title="lettings.models.Address"><code class="xref py py-class docutils literal notranslate"><span class="pre">lettings.models.Address</span></code></a>.</p>
+<p>Vérifie que la représentation textuelle d’une adresse correspond au format attendu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>monkeypatch</strong> (<em>pytest.MonkeyPatch</em>) – fixture Pytest permettant de remplacer temporairement la méthode <code class="docutils literal notranslate"><span class="pre">__str__</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_letting_detail_view">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_letting_detail_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_letting_detail_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_letting_detail_view" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la vue <code class="docutils literal notranslate"><span class="pre">letting</span></code> du module <a class="reference internal" href="lettings.html#module-lettings.views" title="lettings.views"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lettings.views</span></code></a>.</p>
+<p>Vérifie que la vue renvoie les bonnes informations pour une location donnée.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>monkeypatch</strong> (<em>pytest.MonkeyPatch</em>) – fixture Pytest utilisée pour simuler la méthode <code class="docutils literal notranslate"><span class="pre">Letting.objects.get</span></code> et <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_letting_str_and_relation">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_letting_str_and_relation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_letting_str_and_relation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_letting_str_and_relation" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la méthode <code class="docutils literal notranslate"><span class="pre">__str__</span></code> du modèle <a class="reference internal" href="lettings.html#lettings.models.Letting" title="lettings.models.Letting"><code class="xref py py-class docutils literal notranslate"><span class="pre">lettings.models.Letting</span></code></a>
+et la relation avec <a class="reference internal" href="lettings.html#lettings.models.Address" title="lettings.models.Address"><code class="xref py py-class docutils literal notranslate"><span class="pre">lettings.models.Address</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>monkeypatch</strong> (<em>pytest.MonkeyPatch</em>) – fixture Pytest utilisée pour redéfinir la méthode <code class="docutils literal notranslate"><span class="pre">__str__</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_lettings_index_view">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_lettings_index_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_lettings_index_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_lettings_index_view" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la vue <code class="docutils literal notranslate"><span class="pre">index</span></code> du module <a class="reference internal" href="lettings.html#module-lettings.views" title="lettings.views"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lettings.views</span></code></a>.</p>
+<p>Vérifie que la vue retourne bien une liste de locations dans le contexte.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>monkeypatch</strong> (<em>pytest.MonkeyPatch</em>) – fixture Pytest utilisée pour simuler la méthode <code class="docutils literal notranslate"><span class="pre">Letting.objects.all</span></code> et <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_profile_detail_view">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_profile_detail_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_profile_detail_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_profile_detail_view" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la vue <code class="docutils literal notranslate"><span class="pre">profile</span></code> du module <a class="reference internal" href="profiles.html#module-profiles.views" title="profiles.views"><code class="xref py py-mod docutils literal notranslate"><span class="pre">profiles.views</span></code></a>.</p>
+<p>Vérifie que la vue renvoie les informations correctes pour un utilisateur donné.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>monkeypatch</strong> (<em>pytest.MonkeyPatch</em>) – fixture Pytest utilisée pour simuler <code class="docutils literal notranslate"><span class="pre">Profile.objects.get</span></code> et <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_profile_str_and_favorite_city">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_profile_str_and_favorite_city</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_profile_str_and_favorite_city"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_profile_str_and_favorite_city" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la méthode <code class="docutils literal notranslate"><span class="pre">__str__</span></code> du modèle <a class="reference internal" href="profiles.html#profiles.models.Profile" title="profiles.models.Profile"><code class="xref py py-class docutils literal notranslate"><span class="pre">profiles.models.Profile</span></code></a>.</p>
+<p>Ce test vérifie que la représentation textuelle d’un profil contient
+le nom d’utilisateur et la ville favorite.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_profiles_index_view">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_profiles_index_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_profiles_index_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_profiles_index_view" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la vue <code class="docutils literal notranslate"><span class="pre">index</span></code> du module <a class="reference internal" href="profiles.html#module-profiles.views" title="profiles.views"><code class="xref py py-mod docutils literal notranslate"><span class="pre">profiles.views</span></code></a>.</p>
+<p>Vérifie que la liste des profils est correctement renvoyée dans le contexte.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>monkeypatch</strong> (<em>pytest.MonkeyPatch</em>) – fixture Pytest utilisée pour simuler <code class="docutils literal notranslate"><span class="pre">Profile.objects.all</span></code> et <code class="docutils literal notranslate"><span class="pre">render</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.tests.test_urls">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.tests.</span></span><span class="sig-name descname"><span class="pre">test_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/tests.html#test_urls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.tests.test_urls" title="Lien vers cette définition"></a></dt>
-<dd></dd></dl>
+<dd><p>Teste la configuration des URLs du projet principal.</p>
+<p>Vérifie que les chemins principaux (<code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">/lettings/</span></code>, <code class="docutils literal notranslate"><span class="pre">/profiles/</span></code>, etc.)
+sont correctement résolus vers une fonction de vue valide.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>monkeypatch</strong> (<em>pytest.MonkeyPatch</em>) – fixture Pytest (non utilisée ici mais disponible pour cohérence).</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-oc_lettings_site.urls">
 <span id="oc-lettings-site-urls-module"></span><h2>oc_lettings_site.urls module<a class="headerlink" href="#module-oc_lettings_site.urls" title="Lien vers cette rubrique"></a></h2>
+<dl>
+<dt>Configuration des URLs principales de l’application.</dt><dd><dl>
+<dt>Routes :</dt><dd><p>“” : page d’accueil, handled par views.index
+“lettings/” : liste des locations, handled par lettings.views.index</p>
+<p>“lettings/&lt;int:letting_id&gt;/” : détails d’une location, handled par lettings.views.letting</p>
+<p>“profiles/” : liste des profils, handled par profiles.views.index</p>
+<p>“profiles/&lt;str:username&gt;/” : détails d’un profil, handled par profiles.views.profile</p>
+<p>“admin/” : interface d’administration Django</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </section>
 <section id="module-oc_lettings_site.views">
 <span id="oc-lettings-site-views-module"></span><h2>oc_lettings_site.views module<a class="headerlink" href="#module-oc_lettings_site.views" title="Lien vers cette rubrique"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="oc_lettings_site.views.index">
 <span class="sig-prename descclassname"><span class="pre">oc_lettings_site.views.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/views.html#index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.views.index" title="Lien vers cette définition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oc_lettings_site.views.sentry_settings">
+<span class="sig-prename descclassname"><span class="pre">oc_lettings_site.views.</span></span><span class="sig-name descname"><span class="pre">sentry_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oc_lettings_site/views.html#sentry_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oc_lettings_site.views.sentry_settings" title="Lien vers cette définition"></a></dt>
 <dd></dd></dl>
 
 </section>
@@ -239,7 +284,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
         <a href="manage.html" class="btn btn-neutral float-left" title="manage module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
-        <a href="oc_lettings_site.migrations.html" class="btn btn-neutral float-right" title="oc_lettings_site.migrations package" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="profiles.html" class="btn btn-neutral float-right" title="profiles package" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -71,12 +71,24 @@
              
   <h1>Code source de oc_lettings_site.views</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.shortcuts</span><span class="w"> </span><span class="kn">import</span> <span class="n">render</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 
 <div class="viewcode-block" id="index">
 <a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.views.index">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;index.html&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="sentry_settings">
+<a class="viewcode-back" href="../../oc_lettings_site.html#oc_lettings_site.views.sentry_settings">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">sentry_settings</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;SENTRY_DSN&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SENTRY_DSN&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;SENTRY_ENV&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;SENTRY_ENV&quot;</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;GITHUB_SHA&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;GITHUB_SHA&quot;</span><span class="p">,</span> <span class="s2">&quot;local-dev&quot;</span><span class="p">),</span>
+    <span class="p">}</span></div>
 
 </pre></div>
 
