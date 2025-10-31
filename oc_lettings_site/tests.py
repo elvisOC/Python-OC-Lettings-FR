@@ -30,7 +30,7 @@ def test_address_str(monkeypatch):
 
     Vérifie que la représentation textuelle d'une adresse correspond au format attendu.
 
-    :param monkeypatch: fixture Pytest permettant de remplacer temporairement la méthode ``__str__``.
+    :param monkeypatch: fixture Pytest permettant de remplacer la méthode ``__str__``.
     :type monkeypatch: pytest.MonkeyPatch
     """
     address = Address(
@@ -97,7 +97,7 @@ def test_lettings_index_view(monkeypatch):
 
     Vérifie que la vue retourne bien une liste de locations dans le contexte.
 
-    :param monkeypatch: fixture Pytest utilisée pour simuler la méthode ``Letting.objects.all`` et ``render``.
+    :param monkeypatch: fixture Pytest utilisée pour simuler ``Letting.objects.all`` et ``render``.
     :type monkeypatch: pytest.MonkeyPatch
     """
     from lettings.views import index
@@ -120,7 +120,7 @@ def test_letting_detail_view(monkeypatch):
 
     Vérifie que la vue renvoie les bonnes informations pour une location donnée.
 
-    :param monkeypatch: fixture Pytest utilisée pour simuler la méthode ``Letting.objects.get`` et ``render``.
+    :param monkeypatch: fixture Pytest utilisée pour simuler ``Letting.objects.get`` et ``render``.
     :type monkeypatch: pytest.MonkeyPatch
     """
     from lettings.views import letting
@@ -234,6 +234,12 @@ def test_urls(monkeypatch):
     def fake_profile(request, username):
         fake_called["profile_username"] = username
         return f"profile_{username}_response"
+
+    monkeypatch.setattr(urls.views, "index", fake_index)
+    monkeypatch.setattr(urls.lettings.views, "index", fake_lettings_index)
+    monkeypatch.setattr(urls.lettings.views, "letting", fake_letting)
+    monkeypatch.setattr(urls.profiles.views, "index", fake_profiles_index)
+    monkeypatch.setattr(urls.profiles.views, "profile", fake_profile)
 
     assert resolve("/").func is not None
     assert resolve("/lettings/").func is not None
