@@ -75,3 +75,61 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+# Déploiement
+
+## Vue d’ensemble
+
+Le déploiement du projet **Python-OC-Lettings-FR** est automatisé avec **GitHub Actions** (CI) et **Render** (CD).  
+Chaque commit poussé sur la branche `main` déclenche, si tout passe :
+
+1. Lint / tests / couverture (CI)  
+2. Build et push de l'image Docker (si activé)  
+3. Déclenchement du déploiement sur Render via l'API (CD)  
+4. Notification d'une release vers **Sentry** pour le suivi et la traçabilité
+
+---
+
+## Configuration requise
+
+### Technologies
+- Django 5.x, Python 3.11+  
+- Docker (pour build d'image)  
+- Render.com (hébergement) ou VPS (alternative)  
+- GitHub Actions (CI/CD)  
+- Sentry (supervision / release tracking)
+
+### Arborescence utile
+├── .github/
+│ └── workflows/
+│ └── ci-cd.yml # Pipeline GitHub Actions
+├── oc_lettings_site/
+│ └── settings.py # Config Django (env, Whitenoise, Sentry)
+├── entrypoint.sh # Script exécuté au démarrage (collectstatic, migrate, gunicorn)
+├── requirements.txt
+├── README.md
+└── manage.py
+
+## Variables d’environnement nécessaires
+
+Les variables doivent être définies **sur Render** (ou VPS) et certains secrets **dans GitHub**.
+
+### A définir sur Render (Dashboard → Environment)
+| Nom | Rôle | Exemple |
+|-----|------|---------|
+| `SECRET_KEY` | Clé Django (obligatoire en prod) | `p7&f3r8a9...` |
+| `DEBUG` | Mode debug | `False` |
+| `ALLOWED_HOSTS` | Domaines autorisés (sans `https://`) | `python-oc-lettings-fr-y4n6.onrender.com` |
+| `SENTRY_DSN` | DSN Sentry pour capturer erreurs | `https://...ingest.sentry.io/...` |
+
+> **Ne jamais** committer `.env` ou secrets dans le dépôt.
+
+### Secrets GitHub requis (Settings → Secrets and variables → Actions)
+| Nom | Usage |
+|-----|-------|
+| `RENDER_API_KEY` | Appel API pour déclencher un deploy sur Render |
+| `RENDER_SERVICE_ID` | ID du service Render (visible dans l'URL du service) |
+| `DOCKERHUB_TOKEN` | (si push d'image Docker vers DockerHub) |
+| `SENTRY_AUTH_TOKEN` | Token Sentry pour créer les releases (voir scopes) |
+| `SENTRY_ORG` | Slug de l'organisation Sentry (`de-geitere-elvis`) |
+| `SENTRY_PROJECT` | Slug du projet Sentry (`oc-lettings`) |
