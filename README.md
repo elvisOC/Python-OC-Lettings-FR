@@ -134,5 +134,5 @@ Les variables doivent être définies **sur Render** (ou VPS) et certains secret
 | `RENDER_SERVICE_ID` | ID du service Render (visible dans l'URL du service) |
 | `DOCKERHUB_TOKEN` | (si push d'image Docker vers DockerHub) |
 | `SENTRY_AUTH_TOKEN` | Token Sentry pour créer les releases (voir scopes) |
-| `SENTRY_ORG` | Slug de l'organisation Sentry (`de-geitere-elvis`) |
-| `SENTRY_PROJECT` | Slug du projet Sentry (`oc-lettings`) |
+| `SENTRY_ORG` | Slug de l'organisation Sentry |
+| `SENTRY_PROJECT` | Slug du projet Sentry |
