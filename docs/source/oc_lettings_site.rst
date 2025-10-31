@@ -1,13 +1,6 @@
 oc\_lettings\_site package
 ==========================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   oc_lettings_site.migrations
 
 Submodules
 ----------

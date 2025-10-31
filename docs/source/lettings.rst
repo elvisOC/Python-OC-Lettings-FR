@@ -1,14 +1,6 @@
 lettings package
 ================
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   lettings.migrations
-
 Submodules
 ----------
 
